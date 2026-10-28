@@ -61,19 +61,22 @@ public class LootList {
     public void setRollChangeCommon(int v)      { this.rollChangeCommon = v; }
     public void setRollChangeTrash(int v)       { this.rollChangeTrash = v; }
 
-    public Item rollLoot(Enemy enemy) {
-        LootList loot = enemy.lootList;
-        if (!loot.legendary.isEmpty() && random.nextInt(rollBound) < rollChangeLegendary)
+    public Item rollLoot(LootList loot) {
+        return rollLoot(loot,0,0,0,0,0,0);
+    }
+
+    public Item rollLoot(LootList loot, int legendaryChance, int epicChance, int rareChance, int uncommonChance, int commonChance, int trashChance) {
+        if (!loot.legendary.isEmpty() && random.nextInt(rollBound) < rollChangeLegendary + legendaryChance)
             return loot.rollLegendary();
-        if (!loot.epic.isEmpty() && random.nextInt(rollBound) < rollChangeEpic)
+        if (!loot.epic.isEmpty() && random.nextInt(rollBound) < rollChangeEpic + epicChance)
             return loot.rollEpic();
-        if (!loot.rare.isEmpty() && random.nextInt(rollBound) < rollChangeRare)
+        if (!loot.rare.isEmpty() && random.nextInt(rollBound) < rollChangeRare + rareChance)
             return loot.rollRare();
-        if (!loot.uncommon.isEmpty() && random.nextInt(rollBound) < rollChangeUncommon)
+        if (!loot.uncommon.isEmpty() && random.nextInt(rollBound) < rollChangeUncommon + uncommonChance)
             return loot.rollUncommon();
-        if (!loot.common.isEmpty() && random.nextInt(rollBound) < rollChangeCommon)
+        if (!loot.common.isEmpty() && random.nextInt(rollBound) < rollChangeCommon + commonChance)
             return loot.rollCommon();
-        if (!loot.trash.isEmpty() && random.nextInt(rollBound) < rollChangeTrash)
+        if (!loot.trash.isEmpty() && random.nextInt(rollBound) < rollChangeTrash + trashChance)
             return loot.rollTrash();
         return null;
     }
@@ -91,7 +94,6 @@ public class LootList {
     }
 
     // Total useless stuff for debugging
-
     private String formatList(List<Item> list) {
         if (list.isEmpty()) return "[]";
         return list.stream()
