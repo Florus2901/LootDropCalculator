@@ -4,12 +4,8 @@ public class Main
         FirstEnemy enemy = new FirstEnemy();
 
         for(int i = 0; i < 100; i++){
-            Item item = enemy.lootList.rollLoot(enemy);
-            String itemName = "Null";
-            if(item != null){
-                itemName = item.getName();
-            }
-            System.out.println("Roll " + i + " Gives: " + itemName);
+            Item item = enemy.lootList.rollLoot(0,0,0,0,0,0);
+            System.out.println("Roll " + i + " Gives: " + item.getName());
 
         }
     }

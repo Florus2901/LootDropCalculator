@@ -4,7 +4,7 @@ public class FirstEnemy extends Enemy{
         this.name = "FirstEnemy";
         this.lootList = new LootList();
         for(int e = 0; e <= 10; e++){
-            this.lootList.addLegendaryItem(new Item("Epic_"+e));
+            this.lootList.addLegendaryItem(new Item("Legendary_"+e));
         }
         for(int e = 0; e <= 10; e++){
             this.lootList.addEpicItem(new Item("Epic_"+e));

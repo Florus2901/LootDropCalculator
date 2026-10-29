@@ -31,19 +31,19 @@ public class LootList {
 
     // Getters and Setters
 
-    public List<Item> getLegendary(){ return legendary; }
-    public List<Item> getEpic()     { return epic; }
-    public List<Item> getRare()     { return rare; }
-    public List<Item> getUncommon() { return uncommon; }
-    public List<Item> getCommon()   { return common; }
-    public List<Item> getTrash()    { return trash; }
+    public List<Item> getLegendaryList(){ return legendary; }
+    public List<Item> getEpicList()     { return epic; }
+    public List<Item> getRareList()     { return rare; }
+    public List<Item> getUncommonList() { return uncommon; }
+    public List<Item> getCommonList()   { return common; }
+    public List<Item> getTrashList()    { return trash; }
 
-    public void setLegendary(List<Item> legendary)  { this.legendary = legendary; }
-    public void setEpic(List<Item> epic)            { this.epic = epic; }
-    public void setRare(List<Item> rare)            { this.rare = rare; }
-    public void setUncommon(List<Item> uncommon)    { this.uncommon = uncommon; }
-    public void setCommon(List<Item> common)        { this.common = common; }
-    public void setTrash(List<Item> trash)          { this.trash = trash; }
+    public void setLegendaryList(List<Item> legendary)  { this.legendary = legendary; }
+    public void setEpicList(List<Item> epic)            { this.epic = epic; }
+    public void setRareList(List<Item> rare)            { this.rare = rare; }
+    public void setUncommonList(List<Item> uncommon)    { this.uncommon = uncommon; }
+    public void setCommonList(List<Item> common)        { this.common = common; }
+    public void setTrashList(List<Item> trash)          { this.trash = trash; }
 
     public int getRollBound() { return rollBound; }
     public void setRollBound(int rollBound) { this.rollBound = rollBound; }
@@ -61,23 +61,23 @@ public class LootList {
     public void setRollChangeCommon(int v)      { this.rollChangeCommon = v; }
     public void setRollChangeTrash(int v)       { this.rollChangeTrash = v; }
 
-    public Item rollLoot(LootList loot) {
-        return rollLoot(loot,0,0,0,0,0,0);
+    public Item rollLoot() {
+        return rollLoot(0,0,0,0,0,0);
     }
 
-    public Item rollLoot(LootList loot, int legendaryChance, int epicChance, int rareChance, int uncommonChance, int commonChance, int trashChance) {
-        if (!loot.legendary.isEmpty() && random.nextInt(rollBound) < rollChangeLegendary + legendaryChance)
-            return loot.rollLegendary();
-        if (!loot.epic.isEmpty() && random.nextInt(rollBound) < rollChangeEpic + epicChance)
-            return loot.rollEpic();
-        if (!loot.rare.isEmpty() && random.nextInt(rollBound) < rollChangeRare + rareChance)
-            return loot.rollRare();
-        if (!loot.uncommon.isEmpty() && random.nextInt(rollBound) < rollChangeUncommon + uncommonChance)
-            return loot.rollUncommon();
-        if (!loot.common.isEmpty() && random.nextInt(rollBound) < rollChangeCommon + commonChance)
-            return loot.rollCommon();
-        if (!loot.trash.isEmpty() && random.nextInt(rollBound) < rollChangeTrash + trashChance)
-            return loot.rollTrash();
+    public Item rollLoot(int legendaryChance, int epicChance, int rareChance, int uncommonChance, int commonChance, int trashChance) {
+        if (!legendary.isEmpty() && random.nextInt(rollBound) < rollChangeLegendary + legendaryChance)
+            return rollLegendary();
+        if (!epic.isEmpty() && random.nextInt(rollBound) < rollChangeEpic + epicChance)
+            return rollEpic();
+        if (!rare.isEmpty() && random.nextInt(rollBound) < rollChangeRare + rareChance)
+            return rollRare();
+        if (!uncommon.isEmpty() && random.nextInt(rollBound) < rollChangeUncommon + uncommonChance)
+            return rollUncommon();
+        if (!common.isEmpty() && random.nextInt(rollBound) < rollChangeCommon + commonChance)
+            return rollCommon();
+        if (!trash.isEmpty() && random.nextInt(rollBound) < rollChangeTrash + trashChance)
+            return rollTrash();
         return null;
     }
 
